@@ -2,7 +2,6 @@ import os
 import math
 import shutil
 import pytoml
-import socket
 
 import ctypes
 import platform
@@ -57,6 +56,7 @@ def db_connect():
         settings['bot']['first_run'] = True
         f = open(os.path.join(package_dir, 'examples', 'db.sql'),'r')
         db.executescript(f.read())
+        f.close()
 
     return db
 
