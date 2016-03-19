@@ -6,3 +6,12 @@
 # A name to identify the bot
 name = "FatBot"
 
+
+[exchanges]
+
+
+[exchanges.exmo]
+
+# API credentials
+api_key = "your_key_here"
+api_secret = "your_secret_here"
