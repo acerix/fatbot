@@ -22,8 +22,9 @@ class TestExmo(unittest.TestCase):
     # Recent trades
     def test_trades(self):
         pair = ['BTC','USD']
-        trades = self.exchange.get_trades(pair[0], pair[1])
-        self.assertEqual(len(trades[pair[0]+'_'+pair[1]]), 100)
+        limit = 1234
+        trades = self.exchange.get_trades(pair[0], pair[1], limit)
+        self.assertEqual(len(trades), limit)
         
     # Order book
     def test_orders(self):

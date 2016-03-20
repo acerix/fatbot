@@ -10,7 +10,9 @@ class Exmo():
     
     api_url = 'https://api.exmo.com/v1/'
     
-    def __init__(self, api_key, api_secret):
+    buy_commission = 0.002
+    
+    def __init__(self, api_key=None, api_secret=None):
         
         self.api_key = api_key
         self.api_secret = api_secret
@@ -49,8 +51,9 @@ class Exmo():
         return request.json()
         
         
-    def get_trades(self, currency_1_code, currency_2_code):
-        return self.request('trades', {'pair': currency_1_code+'_'+currency_2_code})
+    def get_trades(self, currency_1_code, currency_2_code, limit=10000):
+        pair = currency_1_code+'_'+currency_2_code
+        return self.request('trades', {'pair': pair, 'limit': limit})[pair]
 
     def get_orders(self, currency_1_code, currency_2_code):
         return self.request('order_book', {'pair': currency_1_code+'_'+currency_2_code})
