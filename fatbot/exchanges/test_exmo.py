@@ -54,15 +54,18 @@ class TestExmo(unittest.TestCase):
         balances = self.exchange.get_balances()
         self.assertEqual(len(balances), 8)
         
-    # Create an order
+    # Create an order that won't go through, then cancel it
     def test_order_create(self):
-        return
-        pair = ['BTC','USD']
-        response = self.exchange.order_create(pair[0], pair[1], quantity=0.00000001, price=0.000000001, type='sell')
+        pair = ['DOGE','BTC']
+        # sell 100 DOGE at 0.1 BTC/DOGE
+        # surely, noone will pay tha price, so the order can be cancelled
+        response = self.exchange.order_create(pair[0], pair[1], quantity=100, price=0.1, type='sell')
+        self.assertTrue(response['result'])
         if not response['result']:
             print(response['error'])
-        self.assertTrue(response['result'])
-        
-        
+        else:
+            cancel_response = self.exchange.order_cancel(response['order_id'])
+            self.assertTrue(cancel_response['result'])
+                    
 if __name__ == '__main__':
     unittest.main()

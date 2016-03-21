@@ -80,7 +80,7 @@ class Exmo():
         }, auth=True)
         
     def order_cancel(self, order_id):
-        return self.request('order_create', {
+        return self.request('order_cancel', {
             'order_id': order_id
         }, auth=True)
         

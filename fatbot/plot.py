@@ -13,13 +13,13 @@ def recent_trade_points(market_id, limit):
 
     first_trade = dbc.execute("""
 SELECT
-    trade_time
+    trade_id
 FROM
     trade
 WHERE
     market_id = :market_id
 ORDER BY
-    trade_time DESC
+    trade_id DESC
 LIMIT
     :limit OFFSET :limit - 1
 """,
@@ -28,26 +28,27 @@ LIMIT
     'limit': limit
 }).fetchone()
 
-    
+    c = 0
     for trade in dbc.execute("""
 SELECT
-    trade_time,
+    trade_id,
     price
 FROM
     trade
 WHERE
     market_id = :market_id
 AND
-    trade_time >= :trade_time
+    trade_id >= :trade_id
 ORDER BY
-    trade_time
+    trade_id
 """,
 {
     'market_id': market_id,
-    'trade_time': first_trade['trade_time']
+    'trade_id': first_trade['trade_id']
 }).fetchall():
 
-        x.append(trade[0])
+        x.append(c)
+        c = c + 1
         y.append(trade[1])
 
     return x, y
@@ -61,7 +62,7 @@ def recent_trade_plot(market_id, limit):
 
 
 def main():
-    recent_trade_plot(1, 1000)
+    recent_trade_plot(1, 500)
 
 if __name__ == "__main__":
     main()
