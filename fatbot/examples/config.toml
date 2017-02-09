@@ -7,7 +7,7 @@
 name = "FatBot"
 
 # Trades will be made when the probability of profit is at least this
-probability_threshold = 0.8
+probability_threshold = 0.6
 
 # When enabled, trades are be printed out instead of being sent to the exchange
 only_print_trades = true
