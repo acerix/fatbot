@@ -67,9 +67,15 @@ class Exmo():
     def get_currencies(self):
         return self.request('currency')
         
-
     def get_balances(self):
-        return self.request('user_info', auth=True)['balances']
+        
+        user_info = self.request('user_info', auth=True)
+        
+        if 'balances' in user_info:
+            return user_info['balances']
+            
+        print(user_info)
+        raise Exception('Error getting balances')
 
     def order_create(self, currency_1_code, currency_2_code, quantity, price, type):
         return self.request('order_create', {

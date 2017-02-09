@@ -6,6 +6,15 @@
 # A name to identify the bot
 name = "FatBot"
 
+# Trades will be made when the probability of profit is at least this
+probability_threshold = 0.8
+
+# When enabled, trades are be printed out instead of being sent to the exchange
+only_print_trades = true
+
+# Seconds between trade runs
+trade_run_interval = 30
+
 
 [exchanges]
 
@@ -15,3 +24,4 @@ name = "FatBot"
 # API credentials
 api_key = "your_key_here"
 api_secret = "your_secret_here"
+

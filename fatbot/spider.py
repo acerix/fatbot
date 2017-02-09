@@ -10,7 +10,7 @@ import exmo
 
 def get_trades():
 
-    print('Spidering for new trades')
+    print('Updating trades')
     
     db = config.db_connect()
     dbc = db.cursor()
